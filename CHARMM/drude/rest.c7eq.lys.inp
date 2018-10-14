@@ -1,0 +1,77 @@
+* AAAAXAAAA
+*
+
+!ioformat extended
+
+set 3 16.0  ! cutim
+set 4 16.0  ! cutnb
+set 5 10.0  ! ctonnb
+set 6 12.0  ! ctofnb
+set 7 switch
+set 8 atom
+set 9 vatom
+set 10 vswitch
+set kap 0.34 ! epsilon for the PME
+set ord 6    ! spline order for PME
+
+stream toppar_drude_master_protein_2013c.str
+
+stream c7eq_a4_lys_a4_solvated.str
+
+read sequ card
+* AAAAKAAAA
+*
+9
+ala ala ala ala lys ala ala ala ala
+
+generate A setup warn first ace last ct3 DRUDE DMASS 0.4  HYPE HORD 4 KHYP 40000 RHYP 0.2
+
+read sequ SWM4 @nwater
+generate W setup warn noangle nodihedral DRUDE DMASS 0.4  HYPE HORD 4 KHYP 40000 RHYP 0.2
+
+open read unit 20 card name c7eq_a4_lys_a4_drude.crd
+read coor card unit 20
+close unit 20
+
+coor sdrude
+coor shake
+
+ener
+
+!cons harm force 100000.0 sele .not. type D* end
+!mini SD nstep 50
+!cons harm force 0.0 sele .not. type D* end
+
+!ener
+
+stream c7eq.restraints
+
+!=============================================================
+! Replica-Exchange
+!=============================================================
+
+
+set nstep 1000000
+set pstep 1000
+set exstep 5000
+set timestep 0.001
+set seed 12345
+
+set temp0 300.0
+set temp1 329.0
+set temp2 363.0
+set temp3 400.0
+
+repdstr NREP 4 EXCH EXST FREQ @exstep -
+    temp0 @temp0 -
+    temp1 @temp1 -
+    temp2 @temp2 -
+    temp3 @temp3 -
+    sump unit 17
+
+open write form unit 17 name c7eq.lys.out
+outu 17
+
+stream c7eq.lys.inp
+
+stop

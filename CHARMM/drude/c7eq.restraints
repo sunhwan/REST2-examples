@@ -1,0 +1,22 @@
+* backbone restraints to aR
+*
+
+set phi -82.8
+set psi  77.9
+
+cons dihe A 1  CY A 1  N  A 1  CA A 1  C  force 1000. min @phi
+cons dihe A 1  N  A 1  CA A 1  C  A 2  N  force 1000. min @psi
+cons dihe A 8  C  A 9  N  A 9  CA A 9  C  force 1000. min @phi
+cons dihe A 9  N  A 9  CA A 9  C  A 9  NT force 1000. min @psi
+
+set i 1
+set j 2
+set k 3
+label loop2
+ cons dihe A @i C A @j N A @j CA A @j C force 1000. min @phi
+ cons dihe A @j N A @j CA A @j C A @k N force 1000. min @psi
+incr i by 1
+incr j by 1
+incr k by 1
+if k le 9 goto loop2
+

@@ -1,0 +1,118 @@
+* AAAAXAAAA
+*
+
+!set repid ?myrep
+
+! cell parameters
+ SET BOXTYPE  = RECT
+ SET XTLTYPE  = CUBIC
+ SET A = 32
+ SET B = 32
+ SET C = 32
+ SET ALPHA = 90.0
+ SET BETA  = 90.0
+ SET GAMMA = 90.0
+ SET XCEN = 0
+ SET YCEN = 0
+ SET ZCEN = 0
+
+
+!
+! Setup PBC (Periodic Boundary Condition)
+!
+CRYSTAL DEFINE @XTLtype @A @B @C @alpha @beta @gamma
+crystal build noper 0 cutoff 16.0
+
+!Image centering by residue
+IMAGE BYRESID XCEN @xcen YCEN @ycen ZCEN @zcen sele resname SWM4 end
+IMAGE BYSEGID XCEN @xcen YCEN @ycen ZCEN @zcen sele ( segid A ) end
+
+!
+! Nonbonded Options
+!
+! fftx dimensions should correspond to 1 A or less; must
+! be power of 2, 3 or 5
+set fftx 32
+set ffty 32
+set fftz 32
+update inbfrq -1 imgfrq -1 ihbfrq 0 -
+ewald pmewald kappa @kap fftx @fftx ffty @ffty fftz @fftz order @ord -
+@7 @8 @9 @10 cutimg @3 cutnb @4 ctofnb @6 ctonnb @5
+
+! minimize Drude coordinates
+!cons harm force 10000000.0 sele .not. type D* show end
+!MINI ABNR nstep 200 tolgrd 0.001 nprint 50
+!cons harm force 0.0 sele all end
+
+
+! SHAKE!!!
+coor copy comp
+SHAKE bonh param tolerance 1.0e-9 -
+      nofast -
+      select ( .not. (type D*)) end -
+      select ( .not. (type D*)) end noreset
+
+! AUTO SEED
+time now
+set tempid ?myrep
+set temp @temp@@tempid
+set t ?ELATIME
+calc seed = @NSTEP * @T * @T
+RANDOM UNIF ISEED @seed
+
+! use BLOCK to scale the Hamiltonian
+calc scalepp = @temp0 / @temp
+!calc scalepw = @temp0 / @temp
+calc scalepw = @scalepp ** 0.5
+  block 2
+  call 2 sele segid A  -
+!  call 2 sele segid A .and. resid 5 -
+!  call 2 sele segid A .and. resid 5 .and. .not. type N .and. .not. type HN -
+!  .and. .not. type DN .and. .not. type CA .and. .not. type DCA .and. .not. type HA -
+!  .and. .not. type C .and. .not. type DC .and. .not. type O .and. .not. type DO -
+!  .and. .not. type LPOA .and. .not. type LPOB  -
+  end
+  coeff 1 1 1.0
+  coeff 1 2 @scalepw
+  coeff 2 2 @scalepp
+  end
+  energy
+
+
+
+set up temperature control for NPT simulation
+!scf    THER 2 TAU  0.005 TREF 0.00   SELECT TYPE D* END  -
+TPCONTROL NTHER 4  CMDAMP 10.0  NSTEP 20  -
+  THER 1 TAU  0.1   TREF @temp0 SELECT .NOT. (resname swm4 .or. TYPE D* ) END  -
+  THER 2 TAU  0.1   TREF @temp0 SELECT resname swm4 .and. .NOT. TYPE D* END  -
+  THER 3 TAU  0.005 TREF 1.00   SELECT TYPE D* .and. .not. resname swm4 END -
+  THER 4 TAU  0.005 TREF 1.00   SELECT resname swm4 .and. TYPE D* END -
+  BARO   BTAU 0.1   PREF 1.00 DSCY
+
+
+set ii 0
+set jj 1
+label trj_loop
+
+open read unit 11 card name c7eq.lys.@ii.res
+open write unit 12 card name c7eq.lys.@jj.res
+open write unit 13 file name c7eq.lys.@jj.dcd
+
+! Setup and run the Thermodynamic Integration loop using Langevine
+! Dynamics.
+DYNAMICS  vv2      restart    nstep    @nstep  timestp @timestep  -
+          ntrfrq    @nstep   iprfrq   -1  -
+          nprint    1000     iseed    @seed -
+          iasvel       1     firstt   @temp0   finalt    @temp0    -
+          inbfrq      -1     imgfrq   -1      ihbfrq    0       ilbfrq     0  -
+          iunread     11  -
+          iunwrite    12  -
+          iuncrd      13     nsavcrd   1000
+
+incr ii by 1
+incr jj by 1
+
+if jj .le. 10 goto trj_loop
+
+stop
+
