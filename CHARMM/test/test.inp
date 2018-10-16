@@ -1,0 +1,108 @@
+* Test REST2 
+*
+
+read rtf  card name toppar/top_all36_carb.rtf
+read para card name toppar/par_all36_carb.prm flex
+stream toppar/toppar_water_ions.str
+
+read sequ aglc 1
+gene aglc first none last none setup warn
+
+read sequ tip3 2
+generate tip3 first none last none noangle nodihedral
+
+read coor pdb name system/solute_water.pdb resid
+
+!
+! Setup PBC (Periodic Boundary Condition)
+!
+CRYSTAL DEFINE CUBIC 69.0 69.0 69.0 90 90 90
+crystal build noper 0 cutoff 16.0
+
+!
+! Nonbonded Options
+!
+! fftx dimensions should correspond to 1 A or less; must
+! be power of 2, 3 or 5
+update inbfrq -1 imgfrq -1 ihbfrq 0 -
+ewald pmewald kappa 0.34 fftx 72 ffty 72 fftz 72 order 6 -
+switch atom vatom vswitch cutimg 16.0 cutnb 16.0 ctofnb 12.0 ctonnb 10.0
+
+energy
+
+intere sele segid aglc end sele segid aglc end
+set solute_elec = ?elec
+set solute_vdw = ?vdw
+
+intere sele segid tip3 end sele segid tip3 end
+set solvent_elec = ?elec
+set solvent_vdw = ?vdw
+
+intere sele segid aglc end sele segid tip3 end
+set inter_elec = ?elec
+set inter_vdw = ?vdw
+
+! use BLOCK to scale the Hamiltonian
+set temp0 = 300
+set temp = 600
+calc scalepp = @temp0 / @temp
+calc scalepw = @scalepp ** 0.5
+
+block 2
+  call 2 sele segid aglc end 
+  coeff 1 1 1.0
+  coeff 1 2 @scalepw
+  coeff 2 2 @scalepp
+end
+
+energy
+
+intere sele segid aglc end sele segid aglc end
+set scaled_solute_elec = ?elec
+set scaled_solute_vdw = ?vdw
+
+intere sele segid tip3 end sele segid tip3 end
+set scaled_solvent_elec = ?elec
+set scaled_solvent_vdw = ?vdw
+
+intere sele segid aglc end sele segid tip3 end
+set scaled_inter_elec = ?elec
+set scaled_inter_vdw = ?vdw
+
+calc comp = @{scaled_solute_elec} * 2
+calc diff = abs( @{solute_elec} - @comp )
+calc tol = 0.001
+if diff .gt. @tol then
+  assertion failed
+endif
+
+calc comp = @{scaled_inter_elec} * 2 / sqrt(2)
+calc diff = abs( @{inter_elec} - @comp )
+if diff .gt. @tol then
+  assertion failed
+endif
+
+calc comp = @{scaled_solvent_elec}
+calc diff = abs( @{solvent_elec} - @comp )
+if diff .gt. @tol then
+  assertion failed
+endif
+
+calc comp = @{scaled_solute_vdw} * 2
+calc diff = abs( @{solute_vdw} - @comp )
+calc tol = 0.001
+if diff .gt. @tol then
+  assertion failed
+endif
+
+calc comp = @{scaled_inter_vdw} * 2 / sqrt(2)
+calc diff = abs( @{inter_vdw} - @comp )
+if diff .gt. @tol then
+  assertion failed
+endif
+
+calc comp = @{scaled_solvent_vdw}
+calc diff = abs( @{solvent_vdw} - @comp )
+if diff .gt. @tol then
+  assertion failed
+endif
