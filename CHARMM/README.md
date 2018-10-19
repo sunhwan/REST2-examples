@@ -4,3 +4,6 @@ To use REST2 in CHARMM, BLOCK module and REPDSTR module can be used. BLOCK modul
 
     ./install.com gnu xlarge X86_64 M mpif90 +REPDSTR +ASYNC_PME +GENCOMM
 
+# Test
+
+You can test 
