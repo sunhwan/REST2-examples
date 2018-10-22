@@ -1,0 +1,23 @@
+* select solute
+* 
+
+bomlev -5
+read psf card name step3_pbcsetup.xplor.ext.psf xplor
+read coor card name step3_pbcsetup.crd
+
+define protein sele segid PROA end
+define backbone sele protein .and. ( type CA .or. type O .or. type C .or. type N .or. -
+                                     type HA .or. type HN ) end
+define sidechain sele protein .and. .not. backbone end
+
+scalar wmain set 0
+scalar wmain set 1 sele .byres. ( resn PXY .around. 3 ) .and. sidechain show end
+
+write coor pdb name solute.pdb
+
+scalar wmain set 0
+scalar wmain set 1 sele resn PXY end
+
+write coor pdb name alch.pdb
+
+stop

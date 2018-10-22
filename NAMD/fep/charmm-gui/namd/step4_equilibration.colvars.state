@@ -1,0 +1,30 @@
+configuration {
+  step         3500
+  dt 2.000000e+00
+  version 2018-10-12
+}
+
+colvar {
+  name bb_rmsd
+  x  7.92135831606324e-01
+}
+
+colvar {
+  name sc_rmsd
+  x  1.10724330351939e+00
+}
+
+restraint {
+  configuration {
+    step 3500
+    name harmonic1
+  }
+}
+
+restraint {
+  configuration {
+    step 3500
+    name harmonic2
+  }
+}
+

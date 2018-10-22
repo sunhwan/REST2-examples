@@ -57,14 +57,6 @@ proc replica_lambda { i } {
   #return [ expr $min_temp/(($max_temp-$min_temp)/($num_replicas-1)*$i + $min_temp) ]
 }
 
-proc replica_lambda2 { i } {
-  global num_replicas min_temp max_temp
-  set temp [expr ($min_temp * exp( log(1.0*$max_temp/$min_temp)*(1.0*$i/($num_replicas-1)) ) )]
-  return [ expr sqrt($min_temp/$temp) ]
-  #return [ expr sqrt($min_temp/(($max_temp-$min_temp)/($num_replicas-1)*$i + $min_temp)) ]
-}
-
-
 
 proc setup_parameters { ID } {
   soluteScalingFactor  [replica_lambda $ID]

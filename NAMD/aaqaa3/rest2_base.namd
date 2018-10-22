@@ -19,12 +19,6 @@ paraTypeCharmm          on
 PME                     yes
 PMEGridSpacing          1.0
 
-# Periodic Boundary Conditions
-#cellBasisVector1     85.0    0.   0.
-#cellBasisVector2     0.    85.0   0.
-#cellBasisVector3     0.    0.     85.0
-#cellOrigin           0.0   0.0   0.0
-
 wrapAll                 on
 
 useGroupPressure     yes
