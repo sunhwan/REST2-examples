@@ -58,8 +58,8 @@ source print.tcl
 
 soluteScaling        on
 soluteScalingAll     yes
-ssFile               system/solute.pdb
-ssCol                B
+soluteScalingFile               system/solute.pdb
+soluteScalingCol                B
 
 soluteScalingFactor  1.0
 run 0
