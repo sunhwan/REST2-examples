@@ -56,8 +56,8 @@ source print.tcl
 
 soluteScaling        on
 soluteScalingAll     yes
-soluteScalingFile               system/solute_water.pdb
-soluteScalingCol                B
+soluteScalingFile    system/solute_water.spt.pdb
+soluteScalingCol     B
 
 soluteScalingFactor  1.0
 run 0

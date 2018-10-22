@@ -1,8 +1,8 @@
-PSF EXT CMAP CHEQ
+PSF EXT CMAP CHEQ XPLOR
 
          2 !NTITLE
 * MARK SPT SELECTED ATOMS                                                       
-*  DATE:    10/10/14     13:35:14      CREATED BY USER: sunhwan                 
+*  DATE:    10/22/18     12:14:29      CREATED BY USER: sunhwan                 
 
         24 !NATOM
          1 AGLC     1        AGLC     C1       CC3162   0.340000       12.0110           0   0.00000     -0.301140E-02
