@@ -52,6 +52,6 @@ rigidbonds             all
 
 soluteScaling        on
 soluteScalingAll     no
-ssFile               input/spt-aaqaa3.pdb
-ssCol                B
+soluteScalingFile    input/spt-aaqaa3.pdb
+soluteScalingCol     B
 

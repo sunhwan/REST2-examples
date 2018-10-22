@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MAX_ICNT=50
-NAMD_DIR=/home/sunhwan/local/namd/2.13b1-netlrts
+NAMD_DIR=/home/sunhwan/local/namd/2.13b2-netlrts
 
 let nrep=16
 let icnt=0
