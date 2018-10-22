@@ -4,8 +4,8 @@ set nr [numReplicas]
 if { $num_replicas != $nr } {
     error "restart with wrong number of replicas"
 }
-if { $num_replicas != [ expr [llength $lambda sched] + 1 ]} {
-    error "num_replica and number of lambda value does not match"
+if { $num_replicas != [ expr [llength $lambda_sched] - 1 ]} {
+    error "num_replica ($num_replicas) and number of lambda value ([llength $lambda_sched]) does not match"
 }
 set r [myReplica]
 set replica_id $r
@@ -60,17 +60,11 @@ proc replica_lambda { i } {
   #return [ expr $min_temp/(($max_temp-$min_temp)/($num_replicas-1)*$i + $min_temp) ]
 }
 
-proc replica_alch_lambda { i } {
-  global num_replicas lambda_sched
-  return { [lindex $labmda_sched $i] [lindex $lambda_sched [expr $i + 1]] }
-}
-
-
 proc setup_parameters { ID } {
+  global lambda_sched
   soluteScalingFactor  [replica_lambda $ID]
-  set alch_lambda      [replica_alch_lambda $ID]
-  alchLambda           [lindex $alch_lambda 0]
-  alchLambda2          [lindex $alch_lambda 1]
+  alchLambda           [lindex $lambda_sched $ID]
+  alchLambda2          [lindex $lambda_sched [expr $ID+1]]
 }
 
 proc save_callback {labels values} {
