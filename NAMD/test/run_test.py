@@ -2,7 +2,7 @@ import os
 from math import sqrt
 from collections import defaultdict
 
-NAMDDIR = '/Users/sunhwan/local/namd/2.13b2-netlrts/'
+NAMDDIR = '/home/sunhwan/local/namd/2.13b1-netlrts/'
 
 def parse_energy(outputfile):
     energy = defaultdict(list)

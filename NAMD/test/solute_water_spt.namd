@@ -7,9 +7,41 @@ coordinates             system/solute_water.pdb
 outputname              output/solute_water
 temperature             0
 
-parameters              toppar/par_all36_carb.prm
-parameters              toppar/toppar_water_ions.prm
 paraTypeCharmm          on
+parameters          toppar/par_all36m_prot.prm
+parameters          toppar/par_all36_na.prm
+parameters          toppar/par_all36_carb.prm
+parameters          toppar/par_all36_lipid.prm
+parameters          toppar/par_all36_cgenff.prm
+parameters          toppar/toppar_water_ions.str
+parameters          toppar/toppar_dum_noble_gases.str
+parameters          toppar/toppar_all36_prot_d_aminoacids.str
+parameters          toppar/toppar_all36_prot_fluoro_alkanes.str
+parameters          toppar/toppar_all36_prot_heme.str
+parameters          toppar/toppar_all36_prot_na_combined.str
+parameters          toppar/toppar_all36_prot_retinol.str
+parameters          toppar/toppar_all36_na_nad_ppi.str
+parameters          toppar/toppar_all36_na_rna_modified.str
+parameters          toppar/toppar_all36_lipid_bacterial.str
+parameters          toppar/toppar_all36_lipid_cardiolipin.str
+parameters          toppar/toppar_all36_lipid_cholesterol.str
+parameters          toppar/toppar_all36_lipid_inositol.str
+parameters          toppar/toppar_all36_lipid_lps.str
+parameters          toppar/toppar_all36_lipid_miscellaneous.str
+parameters          toppar/toppar_all36_lipid_model.str
+parameters          toppar/toppar_all36_lipid_prot.str
+parameters          toppar/toppar_all36_lipid_pyrophosphate.str
+parameters          toppar/toppar_all36_lipid_sphingo.str
+parameters          toppar/toppar_all36_lipid_yeast.str
+parameters          toppar/toppar_all36_lipid_hmmm.str
+parameters          toppar/toppar_all36_lipid_detergent.str
+parameters          toppar/toppar_all36_lipid_ether.str
+parameters          toppar/toppar_all36_carb_glycolipid.str
+parameters          toppar/toppar_all36_carb_glycopeptide.str
+parameters          toppar/toppar_all36_carb_imlab.str
+parameters          toppar/toppar_all36_label_spin.str
+parameters          toppar/toppar_all36_label_fluorophore.str
+
 
 # PME
 PME                     on
@@ -56,8 +88,10 @@ source print.tcl
 
 soluteScaling        on
 soluteScalingAll     yes
-soluteScalingFile    system/solute_water.spt.pdb
-soluteScalingCol     B
+#soluteScalingFile    system/solute_water.spt.pdb
+#soluteScalingCol     B
+ssFile    system/solute_water.spt.pdb
+ssCol     B
 
 soluteScalingFactor  1.0
 run 0
