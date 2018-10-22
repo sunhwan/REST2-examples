@@ -78,8 +78,10 @@ rigidbonds             all
 
 soluteScaling        on
 soluteScalingAll     no
-soluteScalingFile    input/solute.pdb
-soluteScalingCol     B
+#soluteScalingFile    input/solute.pdb
+#soluteScalingCol     B
+ssFile    input/solute.pdb
+ssCol     B
 
 alch                 on
 alchType             fep
