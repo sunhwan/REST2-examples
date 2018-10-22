@@ -1,11 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-if (( $# != 2 )); then {
+if [[ $# != 2 ]]; then
   echo "usage: $0 <output_dir> <num_replicas>"
   exit -1
-}; fi
+fi
 
-mkdir $1
+mkdir -p $1
 
-for (( i=0; i<$2; ++i )); do mkdir $1/$i; done
+up=$(($2-1))
+for i in $(seq 0 $up); do
+  mkdir -p $1/$i
+done
 
