@@ -12,6 +12,8 @@ To run the test, edit the `run_test.py` script in the `test` folder to provide c
 
 If all ran correctly, "all test passed" will be printed.
 
-# (AAQAA)3
+# Examples
 
-
+* `aaqaa3`: (AAQAA)3 peptide folding
+* `fep`: p-xylene binding affinity to T4 lysozyme
+* `abl`: Abl kinase and peptide binding affinity
