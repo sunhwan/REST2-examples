@@ -125,5 +125,5 @@ langevinHydrogen       off;            # don't couple bath to hydrogens
 
 # run
 numsteps           500000;             # run stops when this step is reached
-run                5000;             # 1ns
+run                50000;             # 1ns
 

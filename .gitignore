@@ -1,3 +1,7 @@
 FFTW_NAMD_*
 /NAMD/test/output
 .DS_Store
+output
+job*.conf
+slurm-*
+*.swp

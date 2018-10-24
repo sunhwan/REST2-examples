@@ -1,29 +1,29 @@
 configuration {
-  step         3500
+  step        26000
   dt 2.000000e+00
-  version 2018-10-12
+  version 2018-09-07
 }
 
 colvar {
   name bb_rmsd
-  x  7.92135831606324e-01
+  x  7.99231234397606e-01
 }
 
 colvar {
   name sc_rmsd
-  x  1.10724330351939e+00
+  x  1.19317272180244e+00
 }
 
 restraint {
   configuration {
-    step 3500
+    step 26000
     name harmonic1
   }
 }
 
 restraint {
   configuration {
-    step 3500
+    step 26000
     name harmonic2
   }
 }

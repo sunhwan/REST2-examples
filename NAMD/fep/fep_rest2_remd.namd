@@ -64,7 +64,7 @@ proc setup_parameters { ID } {
   global lambda_sched
   soluteScalingFactor  [replica_lambda $ID]
   alchLambda           [lindex $lambda_sched $ID]
-  alchLambda2          [lindex $lambda_sched [expr $ID+1]]
+  alchLambda2          [lindex $lambda_sched [expr $ID + 1]]
 }
 
 proc save_callback {labels values} {
@@ -103,6 +103,10 @@ dcdFreq [expr $steps_per_run * $runs_per_frame]
 
 source $namd_config_file
 setup_parameters $replica(ParamID)
+
+if {$i_run == 0} {
+  minimize 1000
+}
 
 set history_file [open [format "$job_output_root.$replica_id.history" $replica_id] "w"]
 fconfigure $history_file -buffering line

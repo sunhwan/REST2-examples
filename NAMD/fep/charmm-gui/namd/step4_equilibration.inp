@@ -143,4 +143,4 @@ colvarsConfig restraints/$outputname.col
 
 minimize 1000
 numsteps 90000000
-run 2500
+run 25000
