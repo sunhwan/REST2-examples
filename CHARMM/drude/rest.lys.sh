@@ -17,4 +17,4 @@ cp c7eq.lys.inp c7eq.lys.inp_1
 cp c7eq.lys.inp c7eq.lys.inp_2
 cp c7eq.lys.inp c7eq.lys.inp_3
 
-$mpirun $charmm < rest.c7eq.lys.inp > rest.c7eq.lys.out
+$mpirun -np 4 $charmm < rest.c7eq.lys.inp > rest.c7eq.lys.out
