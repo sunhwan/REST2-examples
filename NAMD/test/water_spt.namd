@@ -89,6 +89,9 @@ source print.tcl
 
 soluteScaling        on
 soluteScalingAll     yes
+# NAMD 2.13 doesn't appear to recognize below command
+#soluteScalingFile    system/water.pdb
+#soluteScalingCol     B
 
 soluteScalingFactor  1.0
 run 0
