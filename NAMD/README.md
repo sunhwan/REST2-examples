@@ -22,8 +22,23 @@ and use the following command.
 
 If all ran correctly, "all test passed" will be printed.
 
+If you want to run above test using Docker, use following commands:
+
+    # build docker container (you may change the container name)
+    docker build -t namd .
+
+    # run docker interactively and obtain a shell
+    docker run --volume=$(pwd):/root -it namd /bin/bash
+
+    # now we are in docker container;
+    # namd is installed in /root/namd folder
+    # test files are mounted in /root/rest2 folder
+    cd /root/rest2
+    python run_test.py
+
 ## Examples
 
 * `aaqaa3`: (AAQAA)3 peptide folding
 * `fep`: p-xylene binding affinity to T4 lysozyme
 * `abl`: Abl kinase and peptide binding affinity
+
