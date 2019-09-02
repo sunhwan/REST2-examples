@@ -6,3 +6,4 @@ job*.conf
 slurm-*
 *.swp
 .bash_history
+charmm.tar.gz
