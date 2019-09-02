@@ -5,3 +5,4 @@ output
 job*.conf
 slurm-*
 *.swp
+.bash_history

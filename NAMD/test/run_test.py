@@ -1,8 +1,9 @@
+from __future__ import print_function
 import os
 from math import sqrt
 from collections import defaultdict
 
-NAMDDIR = '/home/sunhwan/local/namd/2.13b1-netlrts/'
+NAMDDIR = '/root/namd'
 
 def parse_energy(outputfile):
     energy = defaultdict(list)
@@ -20,7 +21,10 @@ def parse_energy(outputfile):
 def is_almost_equil(x1, x2, threshold):
     if abs(x1 - x2) < threshold:
         return True
+    print(x1, '!=', x2)
     return False
+
+os.system('mkdir -p output')
 
 # solute
 os.system('%(NAMDDIR)s/namd2 solute.namd > output/solute.out' % locals())

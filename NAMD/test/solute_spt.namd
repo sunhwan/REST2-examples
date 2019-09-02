@@ -82,7 +82,7 @@ exclude                 scaled1-4
 
 commotion               no
 
-rigidbonds             all 
+rigidbonds             all
 
 
 tclforces on
@@ -90,10 +90,6 @@ source print.tcl
 
 soluteScaling        on
 soluteScalingAll     yes
-#soluteScalingFile    system/solute.spt.pdb
-#soluteScalingCol     B
-ssFile    system/solute.spt.pdb
-ssCol     B
 
 soluteScalingFactor  1.0
 run 0

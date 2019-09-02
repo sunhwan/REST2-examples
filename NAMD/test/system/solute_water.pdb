@@ -1,5 +1,5 @@
-REMARK  MARK SPT SELECTED ATOMS                                                       
-REMARK   DATE:    10/22/18     12:14:29      CREATED BY USER: sunhwan                 
+REMARK  MARK SPT SELECTED ATOMS
+REMARK   DATE:    10/22/18     12:14:29      CREATED BY USER: sunhwan
 ATOM      1  C1  AGLC    1       1.435   0.000   0.000  1.00  0.00      AGLC
 ATOM      2  H1  AGLC    1       1.786  -0.433  -0.971  1.00  0.00      AGLC
 ATOM      3  O1  AGLC    1       1.879  -0.664   1.159  1.00  0.00      AGLC
@@ -24,11 +24,11 @@ ATOM     21  H61 AGLC    1      -2.482   1.348   1.885  1.00  0.00      AGLC
 ATOM     22  H62 AGLC    1      -2.542   1.294   0.138  1.00  0.00      AGLC
 ATOM     23  O6  AGLC    1      -2.506  -0.535   1.092  1.00  0.00      AGLC
 ATOM     24  HO6 AGLC    1      -2.748  -0.856   0.213  1.00  0.00      AGLC
-ATOM     25  OH2 TIP3    1       5.000   0.000   0.000  1.00  0.00      TIP3
-ATOM     26  H1  TIP3    1       5.000   0.957   0.000  1.00  0.00      TIP3
-ATOM     27  H2  TIP3    1       5.000  -0.240  -0.927  1.00  0.00      TIP3
-ATOM     28  OH2 TIP3    2       0.000   5.000   0.000  1.00  0.00      TIP3
-ATOM     29  H1  TIP3    2       0.000   5.957   0.000  1.00  0.00      TIP3
-ATOM     30  H2  TIP3    2       0.000   4.760  -0.927  1.00  0.00      TIP3
+ATOM     25  OH2 TIP3    1       5.000   0.000   0.000  0.00  0.00      TIP3
+ATOM     26  H1  TIP3    1       5.000   0.957   0.000  0.00  0.00      TIP3
+ATOM     27  H2  TIP3    1       5.000  -0.240  -0.927  0.00  0.00      TIP3
+ATOM     28  OH2 TIP3    2       0.000   5.000   0.000  0.00  0.00      TIP3
+ATOM     29  H1  TIP3    2       0.000   5.957   0.000  0.00  0.00      TIP3
+ATOM     30  H2  TIP3    2       0.000   4.760  -0.927  0.00  0.00      TIP3
 TER      31      TIP3     2
 END

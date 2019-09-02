@@ -5,8 +5,7 @@ FROM ubuntu:14.04
 RUN \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential && \
-  apt-get install -y wget
+  apt-get install -y build-essential wget git cmake python gfortran
 
 # Set environment variables.
 ENV HOME /root
