@@ -5,6 +5,19 @@ multi-copy algorithm support is required. Download the appropriate binary or
 compile the NAMD from source code (see the instruction found in `notes.txt`
 file).
 
+I also provide Dockerfile for installing NAMD 2.13 binary with multi-copy
+algorithm. Use the following command to build and use NAMD.
+
+    # build docker container (you may change the container name)
+    docker build -t namd .
+
+    # run docker interactively and obtain a shell
+    docker run -it namd namd/namd2 [options]
+
+    # or
+
+    docker run -it namd namd/charmrun [options]
+
 ## Test
 
 The folder `test` contains a set of NAMD script that performs validation test
