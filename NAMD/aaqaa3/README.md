@@ -5,7 +5,9 @@ particular sequence and its variants have been widely used in protein
 folding studies.
 
 In this directory, we will build the initial system for simulation using
-CHARMM and CHARMM-GUI, then perform REST2 simulation using NAMD.
+CHARMM and CHARMM-GUI, then perform REST2 simulation using NAMD. The example
+directory contains `1_aaqaa3`, `2_system`, and `3_rest2` directories, which
+corresponds to the numbered steps described below.
 
 ## 0. Preqiusite
 
@@ -17,11 +19,11 @@ First, we want to build the initial peptide with the correct sequence
 in an extended conformation. This can be achieved in variety of ways.
 Here, we will use CHARMM-GUI and CHARMM to build the initial peptide.
 
-First, go to CHARMM-GUI PDB Reader [http://charmm-gui.org/input/pdbreader]
-and create a PSF file using PDB:1LE0. I used PDB:1LE0 because it is one
+First, go to [CHARMM-GUI PDB Reader](http://charmm-gui.org/input/pdbreader)
+and create a PSF file using `PDB:1LE0`. I used `PDB:1LE0` because it is one
 of the smallest protein in RCSB. You may use your favorite protein.
 
-Once you created PSF, download the whole input file using the "download .tgz"
+Once you created PSF, download the whole input file using the `download .tgz`
 file link on the upper right corner of the page. This will download all
 the necessary input files.
 
@@ -79,11 +81,18 @@ below.
     open write card unit 10 name aaqaa3.pdb
     write coor pdb  unit 10 official
 
-Execute this input file using CHARMM and you will have aaqaa3.pdb file.
+Execute this input file using CHARMM and you will have `aaqaa3.pdb` output file.
 
 ## 2. Build simulation system
 
 This is straightforward after you have the extended conformation.
-We will just use CHARMM-GUI Quick MD Setup to build system.
+We will just use [CHARMM-GUI Solution Builder](http://www.charmm-gui.org/input/solution) 
+to build a solvated system. Download the whole input files using `download .tgz`
+file link.
 
-## 3.
+## 3. REST2 Simulation Setup
+
+Now the fun part. We are ready to setup REST2 simulation. `toppar` directory is
+copied from the CHARMM-GUI input folders downloaded in the previous step. 
+
+
