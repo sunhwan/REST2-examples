@@ -90,7 +90,7 @@ if {$i_run} { #restart
   set inputname      input/equinpt;
   binCoordinates     $inputname.coor;    # coordinates from last run (binary)
   extendedSystem     $inputname.xsc;     # cell dimensions from last run (binary)
-  temperature $TEMP
+  temperature        $TEMP
 }
 
 outputEnergies [expr $steps_per_run]

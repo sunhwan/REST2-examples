@@ -1,1 +1,9 @@
-qsub -t 1:00:00 -n 128 -A US-REST2 --env icnt=0:n=8:nrep=16 --mode script run.sh
+#!/bin/bash
+
+NREPLICA=3         # number of replica
+REPLICA_NODE=1     # number of node per replica
+REPLICA_PPN=8      # number of processor per replica
+
+let np=$REPLICA_NODE*$REPLICA_PPN*$NREPLICA
+
+qsub -v icnt=0 -pe mpi $np run.sh

@@ -74,8 +74,5 @@ rigidbonds             all
 
 soluteScaling        on
 soluteScalingAll     no
-#soluteScalingFile    input/solute.pdb
-#soluteScalingCol     B
-ssFile    input/solute.pdb
-ssCol     B
-
+soluteScalingFile    input/solute.pdb
+soluteScalingCol     O
